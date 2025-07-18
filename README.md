@@ -84,4 +84,13 @@ Your work will be automatically submitted when you push to your GitHub Classroom
 - [React Testing Library Documentation](https://testing-library.com/docs/react-testing-library/intro/)
 - [Supertest Documentation](https://github.com/visionmedia/supertest)
 - [Cypress Documentation](https://docs.cypress.io/)
-- [MongoDB Testing Best Practices](https://www.mongodb.com/blog/post/mongodb-testing-best-practices) 
+- [MongoDB Testing Best Practices](https://www.mongodb.com/blog/post/mongodb-testing-best-practices)
+- // components/BugForm.test.js
+import { render, screen, fireEvent } from '@testing-library/react';
+import BugForm from './BugForm';
+
+test('displays validation error when title is missing', () => {
+  render(<BugForm />);
+  fireEvent.click(screen.getByText(/submit/i));
+  expect(screen.getByText(/title is required/i)).toBeInTheDocument();
+});
